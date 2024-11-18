@@ -38,23 +38,18 @@ export default async function Resolver({ args }: ResolverProps) {
     }
   }
 
-  try {
-    const openaiClient = new OpenAI();
-    const openaiImageResponse = await openaiClient.images.generate({
-      model: "dall-e-3",
-      prompt: `Generate a realistic image of a perfectly plated ${dish}, following this description: ${result.object.recipe.description}. Incorporate the following suggested elements on the table entries: ${result.object.recipe.suggestion.starter}. Suggested drink: ${result.object.recipe.suggestion.drink} and suggested dessert: ${result.object.recipe.suggestion.dessert}. Ensure the scene is safe for work, with all food and drinks neatly arranged on a table. Use a studio photo style with a perspective angle to create a polished, professional look.`,
-      n: 1,
-      style: "natural",
-      size: "1024x1024",
-      response_format: 'url',
-      quality: 'standard',
-    })
+  const openaiClient = new OpenAI();
+  const openaiImageResponse = await openaiClient.images.generate({
+    model: "dall-e-3",
+    prompt: `Generate a realistic image of carefully plated ${dish}, following this description: ${result.object.recipe.description}. Incorporate the following suggested elements on the table starter: ${result.object.recipe.suggestion.starter}. Suggested drink: ${result.object.recipe.suggestion.drink} and suggested dessert: ${result.object.recipe.suggestion.dessert}. Ensure the scene is safe for work, with all food and drinks neatly arranged on a table. Use a studio photo style with a perspective angle to create a polished, professional look.`,
+    n: 1,
+    style: "natural",
+    size: "1024x1024",
+  })
 
-    return {
-      ...result.object.recipe,
-      image: openaiImageResponse.data[0].url
-    }
-  } catch (error) {
-    throw new Error(`Failed to generate image: ${error}`);
+  return {
+    ...result.object.recipe,
+    image: openaiImageResponse.data[0].url
   }
+
 }

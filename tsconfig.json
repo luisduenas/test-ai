@@ -12,7 +12,6 @@
     "baseUrl": ".",
     "paths": {
       "@composabase/client": ["./src/graphql/generated/index.ts"],
-      "@composabase/*": ["./src/*"],
     },
   },
   "ts-node": {
