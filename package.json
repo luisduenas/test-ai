@@ -7,16 +7,17 @@
     "start": "tsx -r tsconfig-paths/register src/index.ts"
   },
   "devDependencies": {
-    "@composabase/sdk": "^0.5",
+    "@composabase/sdk": "^0.5.6",
     "@types/node": "^20.11.17",
     "@urql/core": "^4.2.3",
-    "tsx": "^4.7.1",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.51",
     "@ai-sdk/openai": "^0.0.67",
+    "@pinecone-database/pinecone": "^4.0.0",
     "ai": "^3.4.10",
     "openai": "^4.67.3",
     "zod": "^3.23.8"

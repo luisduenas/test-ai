@@ -55,6 +55,26 @@ const aiSdk = () => {
     resolver: 'foodRecipe',
   })
 
+  module.type('EnrichedSearch', {
+    fields: {
+      title: module.string().optional(),
+      summary: module.string().optional(),
+      originCountry: module.string().optional(),
+      price: module.int().optional(),
+      ingredients: module.list(module.string()).optional(),
+    }
+  })
+
+  module.query('aiEnrichedSearch', {
+    definition: {
+      type: module.list(module.scalar('EnrichedSearch')),
+      args: {
+        term: module.string(),
+      },
+    },
+    resolver: 'aiEnrichedSearch',
+  })
+
   return module
 }
 
